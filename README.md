@@ -46,6 +46,12 @@ py -m http.server 8765
 
 更新 `data.js` 中的 `CATEGORIES` 和 `TOOLS` 数组即可。改完别忘了给 `index.html` 里的 `?v=N` 升个号强制刷缓存。
 
+## SEO
+
+- `sitemap.xml`：自动包含首页 + 32 分类 + 50 热门工具搜索 URL（用 PowerShell 从 data.js 重新生成）
+- `robots.txt`：允许全站收录，指向 sitemap
+- 提交到 Google Search Console / 百度站长平台 后，收录速度会快很多
+
 ## 致谢
 
 数据收录自互联网公开信息。工具归各自作者所有。本站仅作导航整理，不对第三方服务承担责任。

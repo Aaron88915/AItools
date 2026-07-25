@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_backup_*/
+
+Sitemap: https://aaron88915.github.io/AItools/sitemap.xml
