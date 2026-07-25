@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Nav · 全球 AI 工具导航</title>
-  <meta name="description" content="收录全球 280+ AI 工具的导航站，分类齐全，支持模糊搜索。涵盖聊天、绘画、视频、写作、代码、办公、设计等全部主流方向�?>
+  <meta name="description" content="收录全球 280+ AI 工具的导航站，分类齐全，支持模糊搜索。涵盖聊天、绘画、视频、写作、代码、办公、设计等全部主流方向。">
   <meta name="keywords" content="AI 工具,AI 导航,AI 工具大全,ChatGPT,Midjourney,Sora,Claude,DeepSeek,通义千问,文心一言,AI 写作,AI 绘画,AI 编程">
   <meta name="theme-color" content="#0B1020">
   <link rel="sitemap" type="application/xml" href="sitemap.xml">
@@ -30,13 +30,13 @@
       </div>
     </div>
 
-    <!-- 搜索�?-->
+    <!-- 搜索框 -->
     <div class="search-wrap">
       <span class="search-icon" aria-hidden="true">🔍</span>
       <input
         id="search"
         type="search"
-        placeholder="搜索工具名、关键词、分类�?  如：gpt、绘画、国产、代�?
+        placeholder="搜索工具名、关键词、分类…   如：gpt、绘画、国产、代码"
         autocomplete="off"
         spellcheck="false"
       >
@@ -45,8 +45,8 @@
 
     <!-- 统计 -->
     <div class="header-stats">
-      <span><b id="stat-total">0</b> 个工�?/span>
-      <span><b id="stat-cat">0</b> 个分�?/span>
+      <span><b id="stat-total">0</b> 个工具</span>
+      <span><b id="stat-cat">0</b> 个分类</span>
     </div>
   </header>
 
@@ -54,30 +54,30 @@
   <div class="layout">
     <!-- 主体内容 -->
     <main id="content" class="content">
-      <!-- 分类区块�?JS 注入 -->
+      <!-- 分类区块由 JS 注入 -->
     </main>
 
     <!-- 右侧分类导航 -->
-    <aside class="cat-sidebar" aria-label="分类筛�?>
+    <aside class="cat-sidebar" aria-label="分类筛选">
       <div class="cat-sidebar-inner">
         <div class="cat-sidebar-title">分类</div>
         <nav class="cat-nav" id="catNav">
           <button class="cat-chip active" data-cat="all">全部</button>
-          <!-- 分类按钮�?JS 注入 -->
+          <!-- 分类按钮由 JS 注入 -->
         </nav>
       </div>
     </aside>
   </div>
 
-  <!-- 空状�?-->
+  <!-- 空状态 -->
   <div id="empty" class="empty" hidden>
-    <div class="empty-icon">🛰�?/div>
+    <div class="empty-icon">🛰️</div>
     <h2>没找到匹配的工具</h2>
-    <p>试试别的关键词，或�?a href="#" id="resetLink">查看全部</a></p>
+    <p>试试别的关键词，或者<a href="#" id="resetLink">查看全部</a></p>
   </div>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> AI Nav · 收录于互联网公开信息，工具归各自作者所�?/p>
+    <p>© <span id="year"></span> AI Nav · 收录于互联网公开信息，工具归各自作者所有</p>
     <p class="muted">本站仅作导航整理，不对第三方服务承担责任 · <a href="https://github.com/" target="_blank" rel="noopener">GitHub Pages 托管</a></p>
   </footer>
 
@@ -86,4 +86,3 @@
   <script src="app.js?v=6"></script>
 </body>
 </html>
-
