@@ -16,8 +16,11 @@
     gtag('js', new Date());
     gtag('config', 'G-SKES4GTDCS');
   </script>
-  <link rel="icon" type="image/svg+xml" href="logo.svg?v=7">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <!-- Google AdSense（占位 ID；拿到 ca-pub 后替换） -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+          crossorigin="anonymous"></script>
+  <link rel="icon" type="image/svg+xml" href="logo.svg?v=8">
+  <link rel="stylesheet" href="styles.css?v=8">
   <!-- Fuse.js 模糊搜索（CDN,GitHub Pages 可直接访问） -->
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
 </head>
@@ -58,6 +61,18 @@
     </div>
   </header>
 
+  <!-- 顶部广告位（待激活） -->
+  <div class="ad-slot ad-banner">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="0000000000"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <div class="ad-placeholder">广告位（AdSense 待激活）</div>
+  </div>
+
   <!-- 主体 + 右侧分类栏（桌面端两栏，移动端单栏） -->
   <div class="layout">
     <!-- 主体内容 -->
@@ -84,13 +99,25 @@
     <p>试试别的关键词，或者<a href="#" id="resetLink">查看全部</a></p>
   </div>
 
+  <!-- 底部广告位（待激活） -->
+  <div class="ad-slot ad-banner ad-bottom">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="0000000000"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <div class="ad-placeholder">广告位（AdSense 待激活）</div>
+  </div>
+
   <footer class="site-footer">
     <p>© <span id="year"></span> AI Nav · 收录于互联网公开信息，工具归各自作者所有</p>
     <p class="muted">本站仅作导航整理，不对第三方服务承担责任 · <a href="https://github.com/" target="_blank" rel="noopener">GitHub Pages 托管</a></p>
   </footer>
 
   <!-- 数据 + 逻辑 -->
-  <script src="data.js?v=7"></script>
-  <script src="app.js?v=7"></script>
+  <script src="data.js?v=8"></script>
+  <script src="app.js?v=8"></script>
 </body>
 </html>

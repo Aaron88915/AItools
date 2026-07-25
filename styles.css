@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    AI Nav · 样式表
    主题: 深色 + 霓虹青紫
    设计语言: 玻璃拟态 / 渐变描边 / 微动效
@@ -201,6 +201,44 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   grid-template-columns: minmax(0, 1fr) 240px;
   gap: 28px;
   align-items: start;
+}
+
+/* ============================================================
+   广告位（AdSense 占位 / 真实广告）
+   ============================================================ */
+.ad-slot {
+  max-width: 1480px;
+  margin: 16px auto;
+  padding: 0 28px;
+  min-height: 100px;
+  position: relative;
+}
+.ad-slot ins.adsbygoogle {
+  display: block;
+  min-height: 90px;
+}
+.ad-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--text-3);
+  background: var(--bg-card);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-m);
+  pointer-events: none;
+  letter-spacing: 0.4px;
+}
+/* 真实广告加载后隐藏占位文字 */
+.ad-slot ins.adsbygoogle[data-ad-status="filled"] + .ad-placeholder,
+.ad-slot ins.adsbygoogle:has(> iframe) + .ad-placeholder {
+  display: none;
+}
+.ad-slot.ad-bottom {
+  margin-top: 32px;
+  margin-bottom: 0;
 }
 
 /* ============================================================
@@ -433,6 +471,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     padding: 8px 18px 0;
     gap: 12px;
   }
+  /* 移动端广告位：紧凑 */
+  .ad-slot {
+    margin: 12px auto;
+    padding: 0 18px;
+    min-height: 80px;
+  }
+  .ad-slot ins.adsbygoogle { min-height: 60px; }
   .cat-sidebar {
     position: sticky;
     top: 0;
