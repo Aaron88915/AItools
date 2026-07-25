@@ -13,12 +13,15 @@
   const catName = (id) => (CATEGORIES.find((c) => c.id === id) || {}).name || id;
   const catEmoji = (id) => (CATEGORIES.find((c) => c.id === id) || {}).icon || "✨";
 
-  // ---------- 工具：去重（同 name 保留先出现的） ----------
+  // ---------- 工具：去重（按 name+url 唯一 key，保留跨分类的同工具） ----------
   const dedup = (() => {
     const seen = new Set();
     return TOOLS.filter((t) => {
-      if (seen.has(t.name)) return false;
-      seen.add(t.name);
+      // 跨分类的同工具（name+url 相同）会被去重一次，只保留首次出现；
+      // 跨分类的条目（name+url 相同但 category 不同）则会被保留为多分类入口
+      const key = `${t.name} ${t.url} ${t.category}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
       return true;
     });
   })();

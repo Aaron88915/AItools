@@ -433,7 +433,6 @@ const TOOLS = [
   { name: "Magical",         desc: "AI 自动填表",                               url: "https://www.getmagical.com",     category: "niche", tags: ["填表"] },
   { name: "Tome",            desc: "AI 演示",                                   url: "https://tome.app",               category: "niche", tags: ["演示"] },
   { name: "Altered",         desc: "AI 变声",                                   url: "https://www.altered.ai",         category: "niche", tags: ["变声"] },
-  { name: "Voicemod",        desc: "实时变声",                                  url: "https://www.voicemod.net",       category: "niche", tags: ["变声"] },
   { name: "Lookbook AI",     desc: "AI 时尚",                                   url: "https://lookbook.ai",            category: "niche", tags: ["时尚"] },
   { name: "Vue AI",          desc: "AI 时尚零售",                               url: "https://vue.ai",                 category: "niche", tags: ["时尚"] },
   { name: "Tattoos AI",      desc: "AI 纹身设计",                               url: "https://www.tattoosai.com",      category: "niche", tags: ["纹身"] },
@@ -453,12 +452,9 @@ const TOOLS = [
   // ============================================================
 
   // ---------- AI 聊天助手：补小米 MiMo / 阶跃 / 扣子 / Genspark ----------
-  { name: "Xiaomi MiMo",     desc: "小米开源 7B 推理大模型",                    url: "https://platform.xiaomimimo.com", category: "chat",  tags: ["小米","minimax","推理","国产","开源"] },
-  { name: "MiMo Chat",       desc: "小米 MiMo 官方对话体验",                    url: "https://xiaomi.com/ai",          category: "chat",  tags: ["小米","minimax","国产"] },
   { name: "Genspark",        desc: "通用 AI Agent，深度搜索 + 多模型聚合",     url: "https://www.genspark.ai",        category: "chat",  tags: ["agent","搜索","多模型"] },
   { name: "Step Chat",       desc: "阶跃星辰 Step 聊天",                        url: "https://www.stepfun.com/chats/new", category: "chat", tags: ["阶跃","step","国产"] },
   { name: "腾讯 ima",        desc: "腾讯 AI 智能工作台，公众号+知识库问答",     url: "https://ima.qq.com",             category: "chat",  tags: ["腾讯","知识库","国产"] },
-  { name: "千问",            desc: "阿里 Qwen Chat 官方入口",                   url: "https://www.qianwen.com",        category: "chat",  tags: ["阿里","qwen","国产"] },
   { name: "文心 5.0",        desc: "百度文心大模型 5.0，原生全模态",            url: "https://yiyan.baidu.com",        category: "chat",  tags: ["百度","文心","国产"] },
   { name: "混元",            desc: "腾讯混元大模型",                            url: "https://hunyuan.tencent.com",    category: "chat",  tags: ["腾讯","混元","国产"] },
   { name: "Z.ai",            desc: "智谱 Z.ai，对话 + 编程 + Agent",            url: "https://z.ai",                   category: "chat",  tags: ["智谱","glm","国产"] },
@@ -487,8 +483,6 @@ const TOOLS = [
   { name: "Hunyuan3D-1.0",   desc: "腾讯混元 3D 生成大模型",                      url: "https://3d.hunyuan.tencent.com",  category: "opensource", tags: ["腾讯","混元","3d","开源"] },
   { name: "Tencent-HY-MT1.5", desc: "腾讯混元翻译模型（33 语种）",               url: "https://hunyuan.tencent.com/llm", category: "opensource", tags: ["腾讯","翻译","开源"] },
   { name: "Wan 2.1 / 2.6",   desc: "阿里通义万相视频模型（开源）",              url: "https://github.com/Wan-Video",   category: "opensource", tags: ["阿里","万相","视频","开源"] },
-  { name: "DeepSeek-V3.2",   desc: "DeepSeek V3.2，推理+Agent 融合",            url: "https://github.com/deepseek-ai", category: "opensource", tags: ["deepseek","推理","开源"] },
-  { name: "DeepSeek-OCR 2",  desc: "DeepSeek 开源文档识别",                      url: "https://github.com/deepseek-ai/DeepSeek-OCR", category: "opensource", tags: ["deepseek","ocr","开源"] },
   { name: "Kimi K2.5",       desc: "月之暗面 K2.5，Agent 集群",                  url: "https://huggingface.co/moonshotai", category: "opensource", tags: ["kimi","moonshot","开源","代理"] },
 
   // ---------- 视频生成：补 2025-2026 新款 ----------
@@ -505,8 +499,6 @@ const TOOLS = [
   { name: "HappyHorse 1.0",  desc: "阿里淘天 HappyHorse 音视频联合生成",        url: "https://huggingface.co/alibaba-pai", category: "video", tags: ["阿里","happyhorse","开源","视频"] },
   { name: "Hailuo 2.3",      desc: "MiniMax 海螺 2.3，文/图生视频",             url: "https://hailuoai.com",           category: "video", tags: ["minimax","海螺","视频"] },
   { name: "Medeo",           desc: "AI 视频 Agent，一键脚本到成片",             url: "https://medeo.ai",               category: "video", tags: ["agent","视频"] },
-  { name: "Oiioii",          desc: "AI 视频生成 Agent",                          url: "https://oiioii.ai",              category: "video", tags: ["agent","视频"] },
-  { name: "TapNow",          desc: "AI 视频 Agent 工作流",                       url: "https://tapnow.ai",              category: "video", tags: ["agent","视频","工作流"] },
   { name: "NemoVideo",       desc: "字节 NemoVideo 智能视频剪辑",               url: "https://www.volcengine.com",     category: "video", tags: ["字节","剪辑","代理"] },
 
   // ---------- 音频 / 音乐：补 ----------
@@ -539,7 +531,6 @@ const TOOLS = [
   // ---------- 编程：补 2025-2026 IDE ----------
   { name: "TRAE",            desc: "字节 AI 原生 IDE（中文友好）",                url: "https://www.trae.cn",            category: "code",  tags: ["字节","trae","ide","国产","免费"] },
   { name: "Codebuddy",       desc: "腾讯云 Codebuddy，氛围编程 + MCP 生态",      url: "https://www.codebuddy.cn",       category: "code",  tags: ["腾讯","ide","国产"] },
-  { name: "Qoder",           desc: "阿里 Qoder，AI 自主研发",                    url: "https://qoder.com",              category: "code",  tags: ["阿里","qoder","ide","国产"] },
   { name: "秒哒",            desc: "百度秒哒，一句话生成应用",                  url: "https://www.miaoda.cn",          category: "code",  tags: ["百度","无代码","国产"] },
   { name: "Antigravity",     desc: "谷歌 AI IDE，可白嫖 Gemini/Claude",          url: "https://antigravity.google",     category: "code",  tags: ["google","ide","免费"] },
   { name: "Codex",           desc: "OpenAI Codex 编程模型",                      url: "https://openai.com/codex",       category: "code",  tags: ["openai","codex"] },
@@ -549,19 +540,10 @@ const TOOLS = [
   { name: "快马",            desc: "国产 AI 编程平台（自然语言生成项目）",       url: "https://www.inscode.net",        category: "code",  tags: ["国产","编程"] },
   { name: "Kimi Code",       desc: "Kimi 编程 IDE",                              url: "https://www.kimi.com/code",      category: "code",  tags: ["kimi","moonshot","国产"] },
   { name: "Blackbox AI",     desc: "AI 代码补全 + 搜索",                          url: "https://www.blackbox.ai",        category: "code",  tags: ["代码","搜索"] },
-  { name: "Cline",           desc: "VSCode 开源 AI 代理",                        url: "https://github.com/cline/cline", category: "code",  tags: ["vscode","开源","代理"] },
   { name: "Roo Code",        desc: "VSCode 开源 AI 编程代理",                    url: "https://roocode.com",            category: "code",  tags: ["vscode","开源","代理"] },
   { name: "KiloCode",        desc: "AI 编程代理（免费模型）",                    url: "https://kilocode.ai",            category: "code",  tags: ["代理","免费"] },
-  { name: "OpenHands",       desc: "开源 AI 软件工程师",                          url: "https://github.com/All-Hands-AI/OpenHands", category: "code", tags: ["开源","代理"] },
-
-  // ---------- 设计：补 Agent 类 ----------
   { name: "Lovart",          desc: "设计 Agent 标杆，集成所有主流生图/视频",     url: "https://lovart.ai",              category: "design", tags: ["agent","设计","顶级"] },
-  { name: "星流 Xingliu",    desc: "国产设计 Agent",                              url: "https://www.xingliu.art",        category: "design", tags: ["agent","设计","国产"] },
-  { name: "Remini 设计",     desc: "AI 增强 / 老照片修复",                        url: "https://remini.ai",              category: "design", tags: ["设计","增强"] },
-  { name: "DailyTech AI",    desc: "AI 全场景设计（网页/视频/广告）",            url: "https://dailytech.ai",           category: "design", tags: ["设计","全场景"] },
 
-  // ---------- AI 智能体：补 2025-2026 ----------
-  { name: "扣子 Coze 2.0",   desc: "字节扣子 2.0，Skills 智能体平台",            url: "https://www.coze.cn",            category: "agent", tags: ["字节","扣子","国产","skills"] },
   { name: "Dify",            desc: "开源 LLM 应用开发平台",                      url: "https://dify.ai",                category: "agent", tags: ["开源","编排"] },
   { name: "FastGPT",         desc: "国产开源 Agent 知识库平台",                  url: "https://fastgpt.io/zh",          category: "agent", tags: ["国产","开源","知识库"] },
   { name: "Kimi Agent",      desc: "Kimi 深度研究 + Agent",                      url: "https://www.kimi.com",           category: "agent", tags: ["kimi","国产","深度研究"] },

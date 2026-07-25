@@ -11,3 +11,8 @@ Thumbs.db
 
 # 大图（截图本地留档，不推到 repo）
 preview*.png
+
+# 临时调试脚本
+test-*.html
+fix-*.py
+check-*.py
