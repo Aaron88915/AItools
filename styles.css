@@ -431,6 +431,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    响应式（≤ 900px：sidebar 转成顶部横排 sticky）
    ============================================================ */
 @media (max-width: 900px) {
+  /* 移动端：彻底关闭 backdrop-filter（移动 GPU 抗不住 blur 在滚动时持续重计算） */
+  *, *::before, *::after {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
   .site-header {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -527,7 +532,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .cat-select option { background: #0B1020; color: var(--text-0); }
 }
 
-/* 滚动条美化 */
+/* ============================================================
+   性能：快速滚动时全局关闭 backdrop-filter + 降低 paint 成本
+   ============================================================ */
+body[data-fast-scrolling] *,
+body[data-fast-scrolling] *::before,
+body[data-fast-scrolling] *::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body[data-fast-scrolling] * {
+  transition: none !important;
+  animation-duration: 0.001ms !important;
+}
+
+/* ============================================================
+   滚动条美化 */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 4px; }

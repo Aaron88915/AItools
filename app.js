@@ -11,6 +11,17 @@
   const { CATEGORIES, TOOLS } = window.AI_NAV;
   const I18N = window.I18N;
 
+  // 性能：检测快速滚动，给 body 加 data-fast-scrolling，
+  // CSS 据此关闭 backdrop-filter + transition，大幅降低滚动时 paint 成本
+  (function setupFastScrollDetect() {
+    let timer = null;
+    window.addEventListener("scroll", () => {
+      document.body.dataset.fastScrolling = "1";
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => { delete document.body.dataset.fastScrolling; }, 150);
+    }, { passive: true });
+  })();
+
   // 工具：按 id 取分类元数据
   const catById = (id) => CATEGORIES.find((c) => c.id === id) || { id, name: id, icon: "✨" };
 
