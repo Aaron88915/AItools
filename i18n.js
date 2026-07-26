@@ -273,7 +273,13 @@
 
   /* ---------- 核心：lang 状态 + t/catName ---------- */
   function getInitialLang() {
+    // 优先级：URL ?lang= > localStorage > navigator.language
     try {
+      const urlLang = new URLSearchParams(window.location.search).get("lang");
+      if (urlLang === "zh" || urlLang === "en") {
+        try { localStorage.setItem("ai-nav-lang", urlLang); } catch (e) {}
+        return urlLang;
+      }
       const saved = localStorage.getItem("ai-nav-lang");
       if (saved === "zh" || saved === "en") return saved;
     } catch (e) {}
