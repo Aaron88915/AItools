@@ -292,10 +292,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .content {
   min-width: 0; /* 防止 grid 子项被内容撑爆 */
   padding: 0 0 40px;
+  /* 性能：contain layout 隔离 .cat-section 之间的 layout 影响 + 防止滚动链到 header */
+  contain: layout;
+  overscroll-behavior-y: contain;
 }
 
 .cat-section {
   margin: 36px 0 8px;
+  /* 性能：屏幕外的分类区块跳过渲染，避免 533 个工具同时参与 paint/composite */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
 }
 .cat-section:first-child { margin-top: 16px; }
 

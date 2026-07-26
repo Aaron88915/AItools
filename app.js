@@ -195,7 +195,8 @@
     if (currentCat !== "all") {
       const sec = document.getElementById(`cat-${currentCat}`);
       if (sec) {
-        const top = sec.getBoundingClientRect().top + window.scrollY - 110;
+        // offsetTop 触发一次 layout；getBoundingClientRect + window.scrollY 触发两次
+        const top = sec.offsetTop - 110;
         window.scrollTo({ top, behavior: "smooth" });
       }
     } else {
@@ -217,7 +218,7 @@
     if (currentCat !== "all") {
       const sec = document.getElementById(`cat-${currentCat}`);
       if (sec) {
-        const top = sec.getBoundingClientRect().top + window.scrollY - 110;
+        const top = sec.offsetTop - 110;
         window.scrollTo({ top, behavior: "smooth" });
       }
     } else {
