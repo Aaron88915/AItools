@@ -169,6 +169,13 @@
     catNavEl.querySelectorAll(".cat-chip").forEach((c) => c.classList.remove("active"));
     chip.classList.add("active");
     currentCat = chip.dataset.cat;
+    // 同步 ?cat= 到 URL（sitemap 分类 URL 真正可用）
+    try {
+      const url = new URL(window.location.href);
+      if (currentCat !== "all") url.searchParams.set("cat", currentCat);
+      else url.searchParams.delete("cat");
+      history.replaceState(null, "", url.toString());
+    } catch (e) { /* ignore */ }
     applyFilter();
     if (currentCat !== "all") {
       const sec = document.getElementById(`cat-${currentCat}`);
@@ -203,13 +210,31 @@
     }, 80);
   });
 
-  // 初始化：URL ?q= 参数
+  // 初始化：URL ?q= 和 ?cat= 参数
   (function initFromURL() {
     try {
-      const q = new URLSearchParams(window.location.search).get("q");
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get("q");
       if (q) {
         searchEl.value = q;
         currentQuery = q;
+      }
+      const cat = params.get("cat");
+      if (cat && cat !== "all") {
+        // 验证 cat 是合法分类 id
+        const valid = CATEGORIES.find((c) => c.id === cat);
+        if (valid) {
+          currentCat = cat;
+          // 首次渲染后激活对应 chip（renderCatNav 已跑过；这里手动加 active class）
+          // 注意：renderCatNav 会在 langchange 时重渲染并清掉 active；
+          // 首次 initFromURL 之后立即 applyFilter() 时 applyFilter 不会重置 active，
+          // 但我们下面手动加一次。
+          const target = catNavEl.querySelector(`[data-cat="${cat}"]`);
+          if (target) {
+            catNavEl.querySelectorAll(".cat-chip").forEach((c) => c.classList.remove("active"));
+            target.classList.add("active");
+          }
+        }
       }
     } catch (e) { /* ignore */ }
   })();
