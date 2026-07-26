@@ -431,6 +431,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     padding: 24px 18px 16px;
   }
   .header-stats { order: 3; }
+  .header-right {
+    order: 4;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .lang-btn { padding: 5px 10px; font-size: 11px; }
 
   /* layout 单列；用 order 把 sidebar 提到 main 之前 */
   .layout {
@@ -474,6 +480,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .tool-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
   .tool-card { padding: 12px 14px; }
   .brand-text h1 { font-size: 20px; }
+  .card { padding: 24px 20px; }
 }
 
 @media (max-width: 480px) {
@@ -481,6 +488,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .search-wrap { height: 46px; }
   #search { font-size: 14px; }
   .search-kbd { display: none; }
+  .card { padding: 20px 16px; }
 }
 
 /* 滚动条美化 */
@@ -491,3 +499,113 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* 选区 */
 ::selection { background: rgba(99, 102, 241, 0.4); color: #fff; }
+
+/* ============================================================
+   右上角语言切换 + about/privacy 通用样式
+   ============================================================ */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.lang-switch {
+  display: inline-flex;
+  background: rgba(15, 20, 40, 0.7);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill, 999px);
+  padding: 3px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  gap: 2px;
+}
+.lang-btn {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-family: inherit;
+}
+.lang-btn:hover { color: var(--text-0); }
+.lang-btn.active {
+  background: var(--grad);
+  color: #0B1020;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25);
+}
+
+/* about / privacy 通用 card */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  padding: 32px;
+  margin-top: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.card h2 {
+  margin-top: 0;
+  font-size: 22px;
+  color: var(--text-0);
+}
+.card h3 {
+  font-size: 16px;
+  color: var(--text-0);
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.card p, .card ul {
+  line-height: 1.8;
+  color: var(--text-1);
+}
+.card ul {
+  padding-left: 20px;
+  line-height: 1.9;
+}
+.card .note {
+  color: var(--text-2);
+  font-size: 14px;
+  background: rgba(99, 102, 241, 0.06);
+  border-left: 3px solid var(--c-cyan);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  line-height: 1.7;
+}
+.card code {
+  background: var(--bg-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--text-0);
+}
+.cyan { color: var(--c-cyan); }
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.back-home {
+  text-align: center;
+  margin-top: 32px;
+}
+.back-home a {
+  color: var(--c-cyan);
+  text-decoration: none;
+  font-size: 15px;
+}
+.back-home a:hover { text-decoration: underline; }
+
+/* about 单列 header（带语言切换的简化版） */
+.about-header {
+  grid-template-columns: 1fr auto;
+  padding-bottom: 24px;
+}
+.about-header .header-right { gap: 0; }
+

@@ -1,13 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>关于 AI Nav · 全球 AI 工具导航</title>
-  <meta name="description" content="AI Nav 是一个收录全球 AI 工具的静态导航站，分类齐全、支持模糊搜索、纯静态可一键部署到 GitHub Pages。">
+  <title data-i18n-html-title="aboutTitle">关于 AI Nav · 全球 AI 工具导航</title>
+  <meta name="description" data-i18n-content="aboutMetaDesc" content="AI Nav 是一个收录全球 AI 工具的静态导航站，分类齐全、支持模糊搜索、纯静态可一键部署到 GitHub Pages。">
   <meta name="theme-color" content="#0B1020">
-  <link rel="icon" type="image/svg+xml" href="logo.svg?v=8">
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="icon" type="image/svg+xml" href="logo.svg?v=13">
+  <link rel="stylesheet" href="styles.css?v=13">
+  <!-- i18n（首次访问按浏览器语言自动加载） -->
+  <script src="i18n.js?v=13"></script>
 </head>
 <body>
   <div class="bg-glow" aria-hidden="true">
@@ -16,71 +18,75 @@
     <span class="blob blob-3"></span>
   </div>
 
-  <header class="site-header" style="grid-template-columns: 1fr;">
+  <header class="site-header about-header">
     <div class="brand">
       <img src="logo.svg" alt="AI Nav" class="brand-logo">
       <div class="brand-text">
-        <h1>关于 AI Nav</h1>
-        <p class="brand-sub">一个收录全球 AI 工具的静态导航站</p>
+        <h1 data-i18n="aboutH1">关于 AI Nav</h1>
+        <p class="brand-sub" data-i18n="aboutH1Sub">一个收录全球 AI 工具的静态导航站</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="lang-switch" role="group" aria-label="Language switch">
+        <button class="lang-btn" data-lang="zh" type="button" title="简体中文">中</button>
+        <button class="lang-btn" data-lang="en" type="button" title="English">EN</button>
       </div>
     </div>
   </header>
 
   <main class="content" style="max-width: 800px; margin: 0 auto; padding: 0 28px 60px;">
-    <section class="card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-l); padding: 32px; backdrop-filter: blur(10px);">
-      <h2 style="margin-top: 0; font-size: 22px; color: var(--text-0);">这是什么</h2>
-      <p style="line-height: 1.8; color: var(--text-1);">
-        <strong style="background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;">AI Nav</strong>
-        是一个纯静态的 AI 工具导航站，目前收录 533 个工具、32 个分类，涵盖聊天、写作、图像、视频、音频、代码、设计、Agent、开源模型、办公、搜索、翻译、教育、数据分析、营销、3D/空间、世界模型、科研、会议、简历、播客、修图、PPT、数字人、输入法、游戏、健康、法律、金融、天气、垂直小众等所有主流方向。
-      </p>
-      <p style="line-height: 1.8; color: var(--text-1);">
-        支持 <strong style="color: var(--c-cyan);">Fuse.js 模糊搜索</strong>（中英文 / 拼音 / 缩写 / 关键词容错）、<strong style="color: var(--c-cyan);">分类筛选</strong>、<strong style="color: var(--c-cyan);">URL 分享搜索结果</strong>。
-        整个站点只有 6 个文件，0 第三方运行时依赖（仅 jsDelivr CDN 加载 Fuse.js），加载即用。
-      </p>
+    <section class="card">
+      <h2 data-i18n="aboutWhatTitle">这是什么</h2>
+      <p data-i18n="aboutWhatP1">AI Nav 是一个纯静态的 AI 工具导航站，目前收录 533 个工具、32 个分类，涵盖聊天、写作、图像、视频、音频、代码、设计、Agent、开源模型、办公、搜索、翻译、教育、数据分析、营销、3D/空间、世界模型、科研、会议、简历、播客、修图、PPT、数字人、输入法、游戏、健康、法律、金融、天气、垂直小众等所有主流方向。</p>
+      <p data-i18n="aboutWhatP2">支持 Fuse.js 模糊搜索（中英文 / 拼音 / 缩写 / 关键词容错）、分类筛选、URL 分享搜索结果。整个站点只有 6 个文件，0 第三方运行时依赖（仅 jsDelivr CDN 加载 Fuse.js），加载即用。</p>
     </section>
 
-    <section class="card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-l); padding: 32px; margin-top: 20px; backdrop-filter: blur(10px);">
-      <h2 style="margin-top: 0; font-size: 22px; color: var(--text-0);">技术栈</h2>
-      <ul style="line-height: 1.9; color: var(--text-1); padding-left: 20px;">
-        <li>纯静态：HTML + CSS + Vanilla JS，零构建</li>
-        <li>模糊搜索：<a href="https://fusejs.io" target="_blank" rel="noopener" style="color: var(--c-cyan);">Fuse.js 7.0</a>（CDN）</li>
-        <li>部署：GitHub Pages（CDN + HTTPS + 自定义域名支持）</li>
-        <li>分析：Google Analytics（G-SKES4GTDCS）</li>
-        <li>广告：Google AdSense（审核中）</li>
+    <section class="card">
+      <h2 data-i18n="aboutStackTitle">技术栈</h2>
+      <ul>
+        <li data-i18n="aboutStackLi1">纯静态：HTML + CSS + Vanilla JS，零构建</li>
+        <li><span data-i18n="aboutStackLi2Prefix">模糊搜索：</span><a href="https://fusejs.io" target="_blank" rel="noopener" class="cyan">Fuse.js 7.0</a><span data-i18n="aboutStackLi2Suffix">（CDN）</span></li>
+        <li data-i18n="aboutStackLi3">部署：GitHub Pages（CDN + HTTPS + 自定义域名支持）</li>
+        <li data-i18n="aboutStackLi4">分析：Google Analytics（G-SKES4GTDCS）</li>
+        <li data-i18n="aboutStackLi5">广告：Google AdSense（审核中）</li>
       </ul>
     </section>
 
-    <section class="card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-l); padding: 32px; margin-top: 20px; backdrop-filter: blur(10px);">
-      <h2 style="margin-top: 0; font-size: 22px; color: var(--text-0);">数据来源与免责</h2>
-      <p style="line-height: 1.8; color: var(--text-1);">
-        本站所有工具信息均来自互联网公开资料（官方主页、媒体报道、用户社区），按公开用途整理。
-        <strong style="color: var(--c-cyan);">本站仅作导航整理，不对第三方服务承担任何责任</strong>。
-        工具归各自作者所有，访问相应服务时受其服务条款约束。
-      </p>
-      <p style="line-height: 1.8; color: var(--text-1);">
-        如果你是某个工具的作者，认为收录有误或想下架，<a href="mailto:aaron88915@users.noreply.github.com" style="color: var(--c-cyan);">联系我们</a>，我们会在 24 小时内处理。
+    <section class="card">
+      <h2 data-i18n="aboutSourceTitle">数据来源与免责</h2>
+      <p data-i18n="aboutSourceP1">本站所有工具信息均来自互联网公开资料（官方主页、媒体报道、用户社区），按公开用途整理。本站仅作导航整理，不对第三方服务承担任何责任。工具归各自作者所有，访问相应服务时受其服务条款约束。</p>
+      <p>
+        <span data-i18n="aboutSourceP2a">如果你是某个工具的作者，认为收录有误或想下架，</span>
+        <a href="mailto:aaron88915@users.noreply.github.com" class="cyan" data-i18n="aboutSourceP2b">联系我们</a>
+        <span data-i18n="aboutSourceP2c">，我们会在 24 小时内处理。</span>
       </p>
     </section>
 
-    <section class="card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-l); padding: 32px; margin-top: 20px; backdrop-filter: blur(10px);">
-      <h2 style="margin-top: 0; font-size: 22px; color: var(--text-0);">更新记录</h2>
-      <ul style="line-height: 1.9; color: var(--text-1); padding-left: 20px;">
-        <li><strong>v8</strong> · 2026-07-25 · 加 AdSense 占位 + Google Analytics + sitemap + robots</li>
-        <li><strong>v6</strong> · 2026-07-25 · dedup 优化：跨分类同工具保留，删除 18 个纯冗余</li>
-        <li><strong>v4</strong> · 2026-07-25 · 597 → 533 工具，分类导航改到右侧 sidebar，移动端顶部横排</li>
-        <li><strong>v3</strong> · 2026-07-24 · 528 工具，28 分类上线</li>
+    <section class="card">
+      <h2 data-i18n="aboutUpdatesTitle">更新记录</h2>
+      <ul>
+        <li data-i18n="aboutUpdatesLi1">v8 · 2026-07-25 · 加 AdSense 占位 + Google Analytics + sitemap + robots</li>
+        <li data-i18n="aboutUpdatesLi2">v6 · 2026-07-25 · dedup 优化：跨分类同工具保留，删除 18 个纯冗余</li>
+        <li data-i18n="aboutUpdatesLi3">v4 · 2026-07-25 · 597 → 533 工具，分类导航改到右侧 sidebar，移动端顶部横排</li>
+        <li data-i18n="aboutUpdatesLi4">v3 · 2026-07-24 · 528 工具，28 分类上线</li>
       </ul>
     </section>
 
-    <div style="text-align: center; margin-top: 32px;">
-      <a href="./" style="color: var(--c-cyan); text-decoration: none; font-size: 15px;">← 返回 AI Nav 首页</a>
+    <div class="back-home">
+      <a href="./" class="cyan" data-i18n="backHome">← 返回 AI Nav 首页</a>
     </div>
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> AI Nav · 收录于互联网公开信息，工具归各自作者所有</p>
-    <p class="muted">本站仅作导航整理 · <a href="./about.html">关于</a> · <a href="./privacy.html">隐私政策</a> · <a href="https://github.com/Aaron88915/AItools" target="_blank" rel="noopener">GitHub</a></p>
+    <p>© <span id="year"></span> AI Nav · <span data-i18n="footerCopyright">收录于互联网公开信息，工具归各自作者所有</span></p>
+    <p class="muted"><span data-i18n="footerNote">本站仅作导航整理</span> · <a href="./about.html" data-i18n="footerAbout">关于</a> · <a href="./privacy.html" data-i18n="footerPrivacy">隐私政策</a> · <a href="https://github.com/Aaron88915/AItools" target="_blank" rel="noopener" data-i18n="footerGithub">GitHub</a></p>
   </footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    // about/privacy 没有 app.js；手动绑定切换按钮
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => window.I18N && window.I18N.setLang(btn.dataset.lang));
+    });
+  </script>
 </body>
 </html>

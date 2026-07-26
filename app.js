@@ -1,24 +1,23 @@
 /* ============================================================
- * AI Nav · 主逻辑
+ * AI Nav app logic (v13)
  * - 分类导航 + 卡片渲染
  * - Fuse.js 模糊搜索（容错、支持多关键词）
  * - 分类筛选 + / 快捷键
+ * - i18n：分类名按当前语言渲染，监听 langchange 重渲染
  * ============================================================ */
 (function () {
   "use strict";
 
   const { CATEGORIES, TOOLS } = window.AI_NAV;
+  const I18N = window.I18N;
 
-  // ---------- 工具：按分类查名字 ----------
-  const catName = (id) => (CATEGORIES.find((c) => c.id === id) || {}).name || id;
-  const catEmoji = (id) => (CATEGORIES.find((c) => c.id === id) || {}).icon || "✨";
+  // 工具：按 id 取分类元数据
+  const catById = (id) => CATEGORIES.find((c) => c.id === id) || { id, name: id, icon: "✨" };
 
-  // ---------- 工具：去重（按 name+url 唯一 key，保留跨分类的同工具） ----------
+  // 工具：去重（按 name+url+category，保留跨分类同工具）
   const dedup = (() => {
     const seen = new Set();
     return TOOLS.filter((t) => {
-      // 跨分类的同工具（name+url 相同）会被去重一次，只保留首次出现；
-      // 跨分类的条目（name+url 相同但 category 不同）则会被保留为多分类入口
       const key = `${t.name} ${t.url} ${t.category}`;
       if (seen.has(key)) return false;
       seen.add(key);
@@ -26,7 +25,7 @@
     });
   })();
 
-  // ---------- 工具：分组 ----------
+  // 工具：分组
   const groupByCategory = (tools) => {
     const map = new Map();
     for (const t of tools) {
@@ -36,22 +35,43 @@
     return map;
   };
 
-  // ---------- 渲染：分类导航 ----------
+  // 渲染：分类导航（按当前语言取名）
   const catNavEl = document.getElementById("catNav");
-  CATEGORIES.forEach((c) => {
-    const btn = document.createElement("button");
-    btn.className = "cat-chip";
-    btn.dataset.cat = c.id;
-    btn.innerHTML = `<span>${c.icon}</span> ${c.name}`;
-    catNavEl.appendChild(btn);
-  });
+  function renderCatNav() {
+    catNavEl.innerHTML = "";
+    // "全部" 按钮
+    const allBtn = document.createElement("button");
+    allBtn.className = "cat-chip active";
+    allBtn.dataset.cat = "all";
+    allBtn.textContent = I18N.t("catAll");
+    catNavEl.appendChild(allBtn);
+    // 32 个分类
+    CATEGORIES.forEach((c) => {
+      const btn = document.createElement("button");
+      btn.className = "cat-chip";
+      btn.dataset.cat = c.id;
+      const name = I18N.catName(c.id, c.name);
+      btn.innerHTML = `<span class="cat-emoji">${c.icon}</span><span>${name}</span>`;
+      catNavEl.appendChild(btn);
+    });
+    // 恢复 active
+    if (currentCat && currentCat !== "all") {
+      const target = catNavEl.querySelector(`[data-cat="${currentCat}"]`);
+      if (target) {
+        catNavEl.querySelectorAll(".cat-chip").forEach((x) => x.classList.remove("active"));
+        target.classList.add("active");
+      }
+    }
+  }
 
-  // ---------- 渲染：统计 ----------
-  document.getElementById("stat-total").textContent = dedup.length;
-  document.getElementById("stat-cat").textContent = CATEGORIES.length;
-  document.getElementById("year").textContent = new Date().getFullYear();
+  // 渲染：统计
+  function renderStats() {
+    document.getElementById("stat-total").textContent = dedup.length;
+    document.getElementById("stat-cat").textContent = CATEGORIES.length;
+    document.getElementById("year").textContent = new Date().getFullYear();
+  }
 
-  // ---------- 渲染：主体（按分类分组展示） ----------
+  // 渲染：主体（按分类分组展示）
   const contentEl = document.getElementById("content");
   const emptyEl = document.getElementById("empty");
 
@@ -72,11 +92,12 @@
       const sec = document.createElement("section");
       sec.className = "cat-section";
       sec.id = `cat-${c.id}`;
+      const name = I18N.catName(c.id, c.name);
       sec.innerHTML = `
         <h2 class="cat-title">
           <span class="cat-emoji">${c.icon}</span>
-          <span>${c.name}</span>
-          <span class="cat-count">${list.length} 个</span>
+          <span class="cat-name">${name}</span>
+          <span class="cat-count">${list.length}</span>
         </h2>
         <div class="tool-grid"></div>
       `;
@@ -86,7 +107,7 @@
     });
   }
 
-  // ---------- 渲染：单个卡片 ----------
+  // 渲染：单个工具卡
   function buildCard(t) {
     const a = document.createElement("a");
     a.className = "tool-card";
@@ -95,7 +116,7 @@
     a.rel = "noopener noreferrer";
     a.dataset.name = t.name;
     a.dataset.category = t.category;
-    a.title = `${t.name} · ${t.desc}`;
+    a.title = `${t.name} · ${t.desc || ""}`;
     a.innerHTML = `
       <div class="tool-name">${escapeHTML(t.name)}</div>
       <div class="tool-desc">${escapeHTML(t.desc || "")}</div>
@@ -109,7 +130,7 @@
     }[c]));
   }
 
-  // ---------- 搜索（Fuse.js 模糊搜索） ----------
+  // 搜索：Fuse.js 模糊搜索
   // 字段权重: name > tags > desc > category
   const fuse = new Fuse(dedup, {
     keys: [
@@ -118,21 +139,19 @@
       { name: "desc",     weight: 0.10 },
       { name: "category", weight: 0.05 }
     ],
-    threshold: 0.4,        // 模糊度：值越大越"模糊"
-    ignoreLocation: true,  // 不强制位置匹配
+    threshold: 0.4,
+    ignoreLocation: true,
     minMatchCharLength: 1,
     includeScore: false
   });
 
-  // ---------- 当前过滤状态 ----------
+  // 当前过滤状态
   let currentCat = "all";
   let currentQuery = "";
 
   function applyFilter() {
     let list = dedup;
-    // 分类筛选
     if (currentCat !== "all") list = list.filter((t) => t.category === currentCat);
-    // 搜索
     const q = currentQuery.trim();
     if (q) {
       const results = fuse.search(q).map((r) => r.item);
@@ -141,7 +160,7 @@
     renderSections(list);
   }
 
-  // ---------- 事件：分类 chip ----------
+  // 事件：分类 chip
   catNavEl.addEventListener("click", (e) => {
     const chip = e.target.closest(".cat-chip");
     if (!chip) return;
@@ -149,7 +168,6 @@
     chip.classList.add("active");
     currentCat = chip.dataset.cat;
     applyFilter();
-    // 滚动到对应锚点（如果是"全部"，滚到顶部）
     if (currentCat !== "all") {
       const sec = document.getElementById(`cat-${currentCat}`);
       if (sec) {
@@ -161,20 +179,18 @@
     }
   });
 
-  // ---------- 事件：搜索框（带防抖） ----------
+  // 事件：搜索框（带防抖）
   const searchEl = document.getElementById("search");
   let searchTimer = null;
   searchEl.addEventListener("input", (e) => {
     clearTimeout(searchTimer);
     searchTimer = setTimeout(() => {
       currentQuery = e.target.value;
-      // 搜索时自动切到"全部"，避免看不到结果
       if (currentQuery && currentCat !== "all") {
         currentCat = "all";
         catNavEl.querySelectorAll(".cat-chip").forEach((c) => c.classList.remove("active"));
         catNavEl.querySelector('[data-cat="all"]').classList.add("active");
       }
-      // 同步 URL（方便分享 / 浏览器后退）
       try {
         const url = new URL(window.location.href);
         if (currentQuery) url.searchParams.set("q", currentQuery);
@@ -185,7 +201,7 @@
     }, 80);
   });
 
-  // ---------- 初始化：URL ?q= 参数 ----------
+  // 初始化：URL ?q= 参数
   (function initFromURL() {
     try {
       const q = new URLSearchParams(window.location.search).get("q");
@@ -196,7 +212,7 @@
     } catch (e) { /* ignore */ }
   })();
 
-  // ---------- 事件：清空（ESC） ----------
+  // 事件：清空（ESC）
   searchEl.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       searchEl.value = "";
@@ -205,7 +221,7 @@
     }
   });
 
-  // ---------- 事件：/ 快捷键聚焦 ----------
+  // 事件：/ 快捷键聚焦
   document.addEventListener("keydown", (e) => {
     if (e.key === "/" && document.activeElement !== searchEl) {
       e.preventDefault();
@@ -214,7 +230,7 @@
     }
   });
 
-  // ---------- 事件：空状态中的"查看全部"链接 ----------
+  // 事件：空状态中"查看全部"链接
   document.getElementById("resetLink").addEventListener("click", (e) => {
     e.preventDefault();
     searchEl.value = "";
@@ -226,6 +242,21 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  // ---------- 首次渲染 ----------
+  // 事件：语言切换（langchange 由 i18n.js 触发）
+  window.addEventListener("langchange", () => {
+    renderCatNav();
+    applyFilter();
+  });
+
+  // 事件：语言切换按钮
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      I18N.setLang(btn.dataset.lang);
+    });
+  });
+
+  // 首次渲染
+  renderCatNav();
+  renderStats();
   applyFilter();
 })();
