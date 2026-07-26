@@ -19,12 +19,20 @@
   <!-- Google AdSense（占位 ID；拿到 ca-pub 后替换） -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
           crossorigin="anonymous"></script>
-  <link rel="icon" type="image/svg+xml" href="logo.svg?v=10">
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="icon" type="image/svg+xml" href="logo.svg?v=12">
+  <link rel="stylesheet" href="styles.css?v=12">
   <!-- Fuse.js 模糊搜索（CDN,GitHub Pages 可直接访问） -->
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
 </head>
 <body>
+  <!-- Google AdSense Auto Ads 激活（让 AdSense 自动选位置插入；移动端约 7 个、桌面端约 6 个） -->
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-XXXXXXXXXXXXXXXX",
+      enable_page_level_ads: true
+    });
+  </script>
+
   <!-- 顶部背景光晕 -->
   <div class="bg-glow" aria-hidden="true">
     <span class="blob blob-1"></span>
@@ -61,18 +69,6 @@
     </div>
   </header>
 
-  <!-- 顶部广告位（待激活；移动端隐藏，避免首屏被占） -->
-  <div class="ad-slot ad-banner ad-top">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-         data-ad-slot="0000000000"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    <div class="ad-placeholder">广告位（AdSense 待激活）</div>
-  </div>
-
   <!-- 主体 + 右侧分类栏（桌面端两栏，移动端单栏） -->
   <div class="layout">
     <!-- 主体内容 -->
@@ -99,25 +95,13 @@
     <p>试试别的关键词，或者<a href="#" id="resetLink">查看全部</a></p>
   </div>
 
-  <!-- 底部广告位（待激活） -->
-  <div class="ad-slot ad-banner ad-bottom">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-         data-ad-slot="0000000000"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    <div class="ad-placeholder">广告位（AdSense 待激活）</div>
-  </div>
-
   <footer class="site-footer">
     <p>© <span id="year"></span> AI Nav · 收录于互联网公开信息，工具归各自作者所有</p>
     <p class="muted">本站仅作导航整理 · <a href="./about.html">关于</a> · <a href="./privacy.html">隐私政策</a> · <a href="https://github.com/Aaron88915/AItools" target="_blank" rel="noopener">GitHub</a></p>
   </footer>
 
   <!-- 数据 + 逻辑 -->
-  <script src="data.js?v=10"></script>
-  <script src="app.js?v=10"></script>
+  <script src="data.js?v=12"></script>
+  <script src="app.js?v=12"></script>
 </body>
 </html>

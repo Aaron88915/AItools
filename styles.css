@@ -204,42 +204,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ============================================================
-   广告位（AdSense 占位 / 真实广告）
+   广告：已切换到 AdSense Auto Ads（v12），无手动 ad-slot。
+   位置由 AdSense 自动选择，移动端约 7 个、桌面端约 6 个。
    ============================================================ */
-.ad-slot {
-  max-width: 1480px;
-  margin: 16px auto;
-  padding: 0 28px;
-  min-height: 100px;
-  position: relative;
-}
-.ad-slot ins.adsbygoogle {
-  display: block;
-  min-height: 90px;
-}
-.ad-placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: var(--text-3);
-  background: var(--bg-card);
-  border: 1px dashed var(--border);
-  border-radius: var(--radius-m);
-  pointer-events: none;
-  letter-spacing: 0.4px;
-}
-/* 真实广告加载后隐藏占位文字 */
-.ad-slot ins.adsbygoogle[data-ad-status="filled"] + .ad-placeholder,
-.ad-slot ins.adsbygoogle:has(> iframe) + .ad-placeholder {
-  display: none;
-}
-.ad-slot.ad-bottom {
-  margin-top: 32px;
-  margin-bottom: 0;
-}
 
 /* ============================================================
    右侧分类 sidebar（sticky）
@@ -471,24 +438,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     padding: 8px 18px 0;
     gap: 12px;
   }
-  /* 移动端广告位：
-     - 顶部 ad-top 整段隐藏（首屏清爽，不被 auto-format 占位高度吃光）
-     - 底部 ad-bottom 限高 80px
-     - ins 和 placeholder 都封顶 80px，避免 auto format 在未激活时撑高 */
-  .ad-slot.ad-top { display: none; }
-  .ad-slot {
-    margin: 12px auto;
-    padding: 0 18px;
-    min-height: 0;
-    max-height: 80px;
-    overflow: hidden;
-  }
-  .ad-slot ins.adsbygoogle {
-    min-height: 0;
-    max-height: 80px;
-  }
-  .ad-slot.ad-bottom { max-height: 80px; }
-  .ad-placeholder { display: none; }
+  /* 移动端：Auto Ads 由 AdSense 智能插入，不再写手动画尺寸 */
   .cat-sidebar {
     position: sticky;
     top: 0;
