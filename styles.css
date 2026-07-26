@@ -471,13 +471,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     padding: 8px 18px 0;
     gap: 12px;
   }
-  /* 移动端广告位：紧凑 */
+  /* 移动端广告位：
+     - 顶部 ad-top 整段隐藏（首屏清爽，不被 auto-format 占位高度吃光）
+     - 底部 ad-bottom 限高 80px
+     - ins 和 placeholder 都封顶 80px，避免 auto format 在未激活时撑高 */
+  .ad-slot.ad-top { display: none; }
   .ad-slot {
     margin: 12px auto;
     padding: 0 18px;
-    min-height: 80px;
+    min-height: 0;
+    max-height: 80px;
+    overflow: hidden;
   }
-  .ad-slot ins.adsbygoogle { min-height: 60px; }
+  .ad-slot ins.adsbygoogle {
+    min-height: 0;
+    max-height: 80px;
+  }
+  .ad-slot.ad-bottom { max-height: 80px; }
+  .ad-placeholder { display: none; }
   .cat-sidebar {
     position: sticky;
     top: 0;
