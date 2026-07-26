@@ -1,9 +1,9 @@
 /* ============================================================
- * AI Nav app logic (v13)
+ * AI Nav app logic (v14)
  * - 分类导航 + 卡片渲染
  * - Fuse.js 模糊搜索（容错、支持多关键词）
  * - 分类筛选 + / 快捷键
- * - i18n：分类名按当前语言渲染，监听 langchange 重渲染
+ * - i18n：分类名按当前语言渲染，desc 走 descEn，监听 langchange 重渲染
  * ============================================================ */
 (function () {
   "use strict";
@@ -116,10 +116,12 @@
     a.rel = "noopener noreferrer";
     a.dataset.name = t.name;
     a.dataset.category = t.category;
-    a.title = `${t.name} · ${t.desc || ""}`;
+    // 根据当前语言选 desc（en 时优先用 descEn，回落到 desc）
+    const desc = I18N.getLang() === "en" ? (t.descEn || t.desc || "") : (t.desc || "");
+    a.title = `${t.name} · ${desc}`;
     a.innerHTML = `
       <div class="tool-name">${escapeHTML(t.name)}</div>
-      <div class="tool-desc">${escapeHTML(t.desc || "")}</div>
+      <div class="tool-desc">${escapeHTML(desc)}</div>
     `;
     return a;
   }

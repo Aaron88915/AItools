@@ -1,5 +1,5 @@
 /* ============================================================
- * AI Nav i18n (v13)
+ * AI Nav i18n (v14)
  * - 首次访问根据 navigator.language 加载（中文浏览器 → 中文；其他 → 英文）
  * - 右上角切换 zh / en，写 localStorage
  * - HTML 元素加 data-i18n / data-i18n-placeholder / data-i18n-title / data-i18n-content
