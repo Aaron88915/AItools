@@ -35,13 +35,15 @@
     return map;
   };
 
-  // 渲染：分类导航（按当前语言取名）
+  // 渲染：分类导航（桌面 chips + 移动 select 同步；按当前语言取名）
   const catNavEl = document.getElementById("catNav");
+  const catSelectEl = document.getElementById("catSelect");
   function renderCatNav() {
+    // chips（桌面端显示）
     catNavEl.innerHTML = "";
     // "全部" 按钮
     const allBtn = document.createElement("button");
-    allBtn.className = "cat-chip active";
+    allBtn.className = "cat-chip";
     allBtn.dataset.cat = "all";
     allBtn.textContent = I18N.t("catAll");
     catNavEl.appendChild(allBtn);
@@ -54,14 +56,28 @@
       btn.innerHTML = `<span class="cat-emoji">${c.icon}</span><span>${name}</span>`;
       catNavEl.appendChild(btn);
     });
+    // select（移动端显示）
+    catSelectEl.innerHTML = "";
+    const allOpt = document.createElement("option");
+    allOpt.value = "all";
+    allOpt.textContent = I18N.t("catAll");
+    catSelectEl.appendChild(allOpt);
+    CATEGORIES.forEach((c) => {
+      const opt = document.createElement("option");
+      opt.value = c.id;
+      opt.textContent = `${c.icon} ${I18N.catName(c.id, c.name)}`;
+      catSelectEl.appendChild(opt);
+    });
     // 恢复 active
-    if (currentCat && currentCat !== "all") {
-      const target = catNavEl.querySelector(`[data-cat="${currentCat}"]`);
-      if (target) {
-        catNavEl.querySelectorAll(".cat-chip").forEach((x) => x.classList.remove("active"));
-        target.classList.add("active");
-      }
-    }
+    syncCatUI();
+  }
+
+  // 同步 chips.active / select.value 跟随 currentCat
+  function syncCatUI() {
+    catNavEl.querySelectorAll(".cat-chip").forEach((c) => {
+      c.classList.toggle("active", c.dataset.cat === currentCat);
+    });
+    if (catSelectEl.value !== currentCat) catSelectEl.value = currentCat;
   }
 
   // 渲染：统计
@@ -162,14 +178,35 @@
     renderSections(list);
   }
 
-  // 事件：分类 chip
+  // 事件：分类 chip（桌面端）
   catNavEl.addEventListener("click", (e) => {
     const chip = e.target.closest(".cat-chip");
     if (!chip) return;
-    catNavEl.querySelectorAll(".cat-chip").forEach((c) => c.classList.remove("active"));
-    chip.classList.add("active");
     currentCat = chip.dataset.cat;
+    syncCatUI();
     // 同步 ?cat= 到 URL（sitemap 分类 URL 真正可用）
+    try {
+      const url = new URL(window.location.href);
+      if (currentCat !== "all") url.searchParams.set("cat", currentCat);
+      else url.searchParams.delete("cat");
+      history.replaceState(null, "", url.toString());
+    } catch (e) { /* ignore */ }
+    applyFilter();
+    if (currentCat !== "all") {
+      const sec = document.getElementById(`cat-${currentCat}`);
+      if (sec) {
+        const top = sec.getBoundingClientRect().top + window.scrollY - 110;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+
+  // 事件：分类 select（移动端）
+  catSelectEl.addEventListener("change", () => {
+    currentCat = catSelectEl.value;
+    syncCatUI();
     try {
       const url = new URL(window.location.href);
       if (currentCat !== "all") url.searchParams.set("cat", currentCat);
@@ -223,18 +260,7 @@
       if (cat && cat !== "all") {
         // 验证 cat 是合法分类 id
         const valid = CATEGORIES.find((c) => c.id === cat);
-        if (valid) {
-          currentCat = cat;
-          // 首次渲染后激活对应 chip（renderCatNav 已跑过；这里手动加 active class）
-          // 注意：renderCatNav 会在 langchange 时重渲染并清掉 active；
-          // 首次 initFromURL 之后立即 applyFilter() 时 applyFilter 不会重置 active，
-          // 但我们下面手动加一次。
-          const target = catNavEl.querySelector(`[data-cat="${cat}"]`);
-          if (target) {
-            catNavEl.querySelectorAll(".cat-chip").forEach((c) => c.classList.remove("active"));
-            target.classList.add("active");
-          }
-        }
+        if (valid) currentCat = cat;
       }
     } catch (e) { /* ignore */ }
   })();
@@ -263,8 +289,7 @@
     searchEl.value = "";
     currentQuery = "";
     currentCat = "all";
-    catNavEl.querySelectorAll(".cat-chip").forEach((c) => c.classList.remove("active"));
-    catNavEl.querySelector('[data-cat="all"]').classList.add("active");
+    syncCatUI();
     applyFilter();
     window.scrollTo({ top: 0, behavior: "smooth" });
   });

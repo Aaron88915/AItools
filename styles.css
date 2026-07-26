@@ -491,6 +491,36 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .card { padding: 20px 16px; }
 }
 
+/* 移动端分类下拉（桌面端隐藏） */
+.cat-select { display: none; }
+
+@media (max-width: 900px) {
+  /* 移动端：sidebar 隐藏 chips，改用 sticky 下拉 */
+  .cat-sidebar-inner { display: none; }
+  .cat-select {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(15, 20, 40, 0.7);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-m);
+    color: var(--text-0);
+    font-size: 14px;
+    font-family: inherit;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%239ca3af' d='M6 8L0 0h12z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+  .cat-select:focus { outline: none; border-color: rgba(99, 102, 241, 0.6); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12); }
+  .cat-select option { background: #0B1020; color: var(--text-0); }
+}
+
 /* 滚动条美化 */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
