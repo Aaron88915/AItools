@@ -80,3 +80,14 @@ py -m http.server 8765
 ## 致谢
 
 数据收录自互联网公开信息。工具归各自作者所有。本站仅作导航整理，不对第三方服务承担责任。
+
+## 更新记录
+
+### v24 · 2026-08-14 · AdSense 优化
+- **主页静态 SEO intro**（`index.html`）：在 `<main>` 顶部加 533 工具 / 32 分类介绍 + 8 个**编辑精选**工具链接（ChatGPT / Claude / Midjourney / Sora / Suno / Cursor / GitHub Copilot / Perplexity），JS 渲染前/后均可见
+- **删除"广告位（AdSense 待激活）"占位文字**：避免 AdSense crawler 读出"广告未激活"负面信号；占位 div 保留为空，AdSense 激活后由 Auto Ads 自动填入
+- **app.js**：`renderSections()` 保留非 `.cat-section` 静态元素，JS 重渲染不覆盖 intro
+- **styles.css**：加 `.static-intro` / `.editor-picks` 样式（含移动端 600px 单列适配）
+- **i18n.js**：加 12 个新 i18n keys（`introH2` / `introP` / `introPicksTitle` / `pickChatGPT` 等），中英双语
+- **预期效果**：AdSense crawler 看到静态内容（"非自动生成"信号），降低"内容重复/低价值"判定概率，加速审核
+

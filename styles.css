@@ -297,6 +297,109 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   overscroll-behavior-y: contain;
 }
 
+/* ============================================================
+   静态 SEO intro（v24：JS 渲染前 crawler/用户可见）
+   ============================================================ */
+.static-intro {
+  margin: 16px 0 24px;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  /* 性能：屏幕外不渲染，避免影响 LCP */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 360px;
+}
+
+.static-intro .intro-h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-0);
+  line-height: 1.4;
+}
+
+.static-intro .intro-p {
+  margin: 0 0 16px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-1);
+}
+
+.static-intro .intro-h3 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-0);
+}
+
+.editor-picks {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px;
+}
+
+.editor-picks li {
+  margin: 0;
+  padding: 0;
+}
+
+.editor-picks .pick-link {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  color: var(--text-1);
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 1.5;
+  transition: border-color .15s ease, background .15s ease, transform .15s ease;
+}
+
+.editor-picks .pick-link:hover {
+  border-color: var(--c-cyan);
+  background: var(--bg-1);
+  transform: translateY(-1px);
+}
+
+.editor-picks .pick-link b {
+  flex-shrink: 0;
+  color: var(--text-0);
+  font-weight: 600;
+}
+
+.editor-picks .pick-link span {
+  color: var(--text-2);
+}
+
+.intro-tip {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.intro-tip kbd {
+  padding: 1px 6px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  color: var(--text-1);
+}
+
+@media (max-width: 600px) {
+  .static-intro { padding: 16px 18px; }
+  .static-intro .intro-h2 { font-size: 17px; }
+  .editor-picks { grid-template-columns: 1fr; }
+}
+
 .cat-section {
   margin: 36px 0 8px;
   /* 性能：屏幕外的分类区块跳过渲染，避免 533 个工具同时参与 paint/composite */

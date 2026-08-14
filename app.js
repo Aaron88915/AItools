@@ -1,9 +1,10 @@
 /* ============================================================
- * AI Nav app logic (v14)
+ * AI Nav app logic (v24)
  * - 分类导航 + 卡片渲染
  * - Fuse.js 模糊搜索（容错、支持多关键词）
  * - 分类筛选 + / 快捷键
  * - i18n：分类名按当前语言渲染，desc 走 descEn，监听 langchange 重渲染
+ * - v24: renderSections() 保留非 .cat-section 静态元素（编辑精选 intro 不被覆盖）
  * ============================================================ */
 (function () {
   "use strict";
@@ -103,12 +104,21 @@
   const emptyEl = document.getElementById("empty");
 
   function renderSections(tools) {
+    // v24：保留非 .cat-section 的静态内容（编辑精选/SEO intro），
+    // 避免 JS 每次重渲染把 crawler/用户可见的 intro 抹掉
+    const preserved = Array.from(contentEl.children).filter(
+      (el) => !el.classList.contains("cat-section")
+    );
+
     contentEl.innerHTML = "";
     if (!tools.length) {
       emptyEl.hidden = false;
       return;
     }
     emptyEl.hidden = true;
+
+    // 把保留的静态内容放回 main 顶部
+    preserved.forEach((el) => contentEl.appendChild(el));
 
     const grouped = groupByCategory(tools);
     // 保持 CATEGORIES 原始顺序

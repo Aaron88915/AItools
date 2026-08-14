@@ -1,10 +1,11 @@
 /* ============================================================
- * AI Nav i18n (v14)
+ * AI Nav i18n (v24)
  * - 首次访问根据 navigator.language 加载（中文浏览器 → 中文；其他 → 英文）
  * - 右上角切换 zh / en，写 localStorage
  * - HTML 元素加 data-i18n / data-i18n-placeholder / data-i18n-title / data-i18n-content
  * - 分类名用 I18N.catName(catId, zhName) 渲染（catName 来自下方 CAT_EN 字典）
  * - 切换时触发 window 'langchange' 事件，app.js 监听后重渲染
+ * - v24: 加 12 个 keys（introH2 / introP / introPicksTitle / pickChatGPT 等 8 工具 / introTip）
  * ============================================================ */
 (function () {
   "use strict";
@@ -66,6 +67,19 @@
       footerGithub:  "GitHub",
       backHome: "← 返回 AI Nav 首页",
       langLabel: "中",
+      // v24 静态 SEO intro + 编辑精选
+      introH2: "AI 工具导航 · 全球最全 AI 工具大全",
+      introP: "收录 533 个 AI 工具、32 个分类，覆盖聊天、写作、图像、视频、音频、代码、设计、Agent、开源模型、办公、搜索、翻译、教育、数据分析、营销、3D / 世界模型、科研、会议、简历、播客、修图、PPT、数字人、输入法、游戏、健康、法律、金融、天气、垂直小众等全部方向。支持中英文 / 拼音 / 缩写 / 关键词容错的模糊搜索。",
+      introPicksTitle: "🔥 编辑精选（每周更新）",
+      pickChatGPT: "OpenAI 多模态对话，新手入门首选",
+      pickClaude: "Anthropic 出品，长文档与代码能力强",
+      pickMidjourney: "AI 图像生成画质天花板",
+      pickSora: "OpenAI 视频生成（文生视频）",
+      pickSuno: "AI 音乐生成（含人声）",
+      pickCursor: "AI 优先的代码编辑器",
+      pickCopilot: "GitHub + OpenAI 的 AI 结对编程",
+      pickPerplexity: "AI 答案引擎，带引用来源",
+      introTip: "💡 使用提示：按 / 聚焦搜索框；右侧分类栏快速筛选；搜索关键词会同步到 URL，可分享。",
       // about.html
       aboutTitle:    "关于 AI Nav · 全球 AI 工具导航",
       aboutMetaDesc: "AI Nav 是一个收录全球 AI 工具的静态导航站，分类齐全、支持模糊搜索、纯静态可一键部署到 GitHub Pages。",
@@ -177,6 +191,19 @@
       footerGithub:  "GitHub",
       backHome: "← Back to AI Nav",
       langLabel: "EN",
+      // v24 static SEO intro + editor picks
+      introH2: "AI Tools Directory · The Global AI Tools Catalog",
+      introP: "Featuring 533 AI tools across 32 categories: chat, writing, image, video, audio, code, design, agents, open-source models, office, search, translation, education, data analysis, marketing, 3D/world models, research, meetings, resumes, podcasts, photo editing, PPT, digital humans, input methods, gaming, health, legal, finance, weather, and vertical niches. Supports fuzzy search (Chinese/English/pinyin/abbreviation).",
+      introPicksTitle: "🔥 Editor's Picks (Updated Weekly)",
+      pickChatGPT: "OpenAI multimodal chat, top pick for beginners",
+      pickClaude: "From Anthropic, strong long-doc and code capabilities",
+      pickMidjourney: "The gold standard in AI image generation",
+      pickSora: "OpenAI's text-to-video generation",
+      pickSuno: "AI music generation, including vocals",
+      pickCursor: "AI-first code editor",
+      pickCopilot: "GitHub + OpenAI AI pair programming",
+      pickPerplexity: "AI answer engine with cited sources",
+      introTip: "💡 Tips: press / to focus search; use the right sidebar to filter; search keywords sync to the URL for sharing.",
       // about.html
       aboutTitle:    "About AI Nav · Global AI Tools Directory",
       aboutMetaDesc: "AI Nav is a static directory of global AI tools with full categories, fuzzy search, and one-click GitHub Pages deployment.",

@@ -19,12 +19,12 @@
   <!-- Google AdSense Auto Ads -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6473783239192829"
           crossorigin="anonymous"></script>
-  <link rel="icon" type="image/svg+xml" href="logo.svg?v=22">
-  <link rel="stylesheet" href="styles.css?v=22">
+  <link rel="icon" type="image/svg+xml" href="logo.svg?v=24">
+  <link rel="stylesheet" href="styles.css?v=24">
   <!-- Fuse.js 模糊搜索（CDN，GitHub Pages 可直接访问） -->
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <!-- i18n（必须在 data.js / app.js 之前；首次访问按浏览器语言自动加载） -->
-  <script src="i18n.js?v=22"></script>
+  <script src="i18n.js?v=24"></script>
 </head>
 <body>
   <!-- Google AdSense Auto Ads 激活（让 AdSense 自动选位置插入；移动端约 7 个、桌面端约 6 个） -->
@@ -82,6 +82,23 @@
   <div class="layout">
     <!-- 主体内容 -->
     <main id="content" class="content">
+      <!-- 静态 SEO/介绍（v24：JS 渲染前 crawler/用户可见，JS 渲染后保留在 main 顶部） -->
+      <section class="static-intro" aria-label="site intro">
+        <h2 class="intro-h2" data-i18n="introH2">AI 工具导航 · 全球最全 AI 工具大全</h2>
+        <p class="intro-p" data-i18n="introP">收录 533 个 AI 工具、32 个分类，覆盖聊天、写作、图像、视频、音频、代码、设计、Agent、开源模型、办公、搜索、翻译、教育、数据分析、营销、3D / 世界模型、科研、会议、简历、播客、修图、PPT、数字人、输入法、游戏、健康、法律、金融、天气、垂直小众等全部方向。支持中英文 / 拼音 / 缩写 / 关键词容错的模糊搜索。</p>
+        <h3 class="intro-h3" data-i18n="introPicksTitle">🔥 编辑精选（每周更新）</h3>
+        <ul class="editor-picks">
+          <li><a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" class="pick-link"><b>ChatGPT</b><span data-i18n="pickChatGPT">OpenAI 多模态对话，新手入门首选</span></a></li>
+          <li><a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="pick-link"><b>Claude</b><span data-i18n="pickClaude">Anthropic 出品，长文档与代码能力强</span></a></li>
+          <li><a href="https://www.midjourney.com" target="_blank" rel="noopener noreferrer" class="pick-link"><b>Midjourney</b><span data-i18n="pickMidjourney">AI 图像生成画质天花板</span></a></li>
+          <li><a href="https://openai.com/sora" target="_blank" rel="noopener noreferrer" class="pick-link"><b>Sora</b><span data-i18n="pickSora">OpenAI 视频生成（文生视频）</span></a></li>
+          <li><a href="https://www.suno.ai" target="_blank" rel="noopener noreferrer" class="pick-link"><b>Suno</b><span data-i18n="pickSuno">AI 音乐生成（含人声）</span></a></li>
+          <li><a href="https://www.cursor.com" target="_blank" rel="noopener noreferrer" class="pick-link"><b>Cursor</b><span data-i18n="pickCursor">AI 优先的代码编辑器</span></a></li>
+          <li><a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer" class="pick-link"><b>GitHub Copilot</b><span data-i18n="pickCopilot">GitHub + OpenAI 的 AI 结对编程</span></a></li>
+          <li><a href="https://www.perplexity.ai" target="_blank" rel="noopener noreferrer" class="pick-link"><b>Perplexity</b><span data-i18n="pickPerplexity">AI 答案引擎，带引用来源</span></a></li>
+        </ul>
+        <p class="intro-tip" data-i18n="introTip">💡 使用提示：按 <kbd>/</kbd> 聚焦搜索框；右侧分类栏快速筛选；搜索关键词会同步到 URL，可分享。</p>
+      </section>
       <!-- 分类区块由 JS 注入 -->
     </main>
 
@@ -107,8 +124,9 @@
     <p><span data-i18n="emptyDesc">试试别的关键词，或者</span><a href="#" id="resetLink" data-i18n="emptyReset">查看全部</a></p>
   </div>
 
-  <!-- 底部广告位（手动 + Auto Ads 共存） -->
-  <div class="ad-slot ad-bottom">
+  <!-- 底部广告位（v24：删掉"待激活"占位文字，避免 AdSense crawler 读出负面信号；
+       AdSense 激活后由 Auto Ads 自动填入） -->
+  <div class="ad-slot ad-bottom" aria-hidden="true">
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-6473783239192829"
@@ -116,7 +134,6 @@
          data-ad-format="horizontal"
          data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    <div class="ad-placeholder">广告位（AdSense 待激活）</div>
   </div>
 
   <footer class="site-footer">
@@ -125,7 +142,7 @@
   </footer>
 
   <!-- 数据 + 逻辑 -->
-  <script src="data.js?v=22"></script>
-  <script src="app.js?v=22"></script>
+  <script src="data.js?v=24"></script>
+  <script src="app.js?v=24"></script>
 </body>
 </html>
