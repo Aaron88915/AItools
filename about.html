@@ -6,13 +6,13 @@
   <title data-i18n-html-title="aboutTitle">关于 AI Nav · 全球 AI 工具导航</title>
   <meta name="description" data-i18n-content="aboutMetaDesc" content="AI Nav 是一个收录全球 AI 工具的静态导航站，分类齐全、支持模糊搜索、纯静态可一键部署到 GitHub Pages。">
   <meta name="theme-color" content="#0B1020">
-  <link rel="icon" type="image/svg+xml" href="logo.svg?v=24">
-  <link rel="stylesheet" href="styles.css?v=24">
+  <link rel="icon" type="image/svg+xml" href="logo.svg?v=25">
+  <link rel="stylesheet" href="styles.css?v=25">
   <!-- Google AdSense Auto Ads（ca-pub-6473783239192829） -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6473783239192829"
           crossorigin="anonymous"></script>
   <!-- i18n（首次访问按浏览器语言自动加载） -->
-  <script src="i18n.js?v=24"></script>
+  <script src="i18n.js?v=25"></script>
 </head>
 <body>
   <div class="bg-glow" aria-hidden="true">
@@ -38,10 +38,55 @@
   </header>
 
   <main class="content" style="max-width: 800px; margin: 0 auto; padding: 0 28px 60px;">
+
+    <section class="card">
+      <h2 data-i18n="aboutTeamTitle">团队</h2>
+      <p data-i18n="aboutTeamP1">AI Nav 由独立 AI 工具评测团队运营。团队成员均为长期关注 AI 行业的产品经理、独立开发者和内容创作者，覆盖中、英、日三种语言市场的 AI 工具使用经验。</p>
+      <p data-i18n="aboutTeamP2">我们不是 AI 公司，也不是营销机构——我们是一群真心觉得「AI 工具太杂了，需要一个干净、客观的目录」的用户。这份目录的目标是：让任何人在 3 分钟内找到合适的 AI 工具，而不是被各种营销话术淹没。</p>
+    </section>
+
     <section class="card">
       <h2 data-i18n="aboutWhatTitle">这是什么</h2>
       <p data-i18n="aboutWhatP1">AI Nav 是一个纯静态的 AI 工具导航站，目前收录 533 个工具、32 个分类，涵盖聊天、写作、图像、视频、音频、代码、设计、Agent、开源模型、办公、搜索、翻译、教育、数据分析、营销、3D/空间、世界模型、科研、会议、简历、播客、修图、PPT、数字人、输入法、游戏、健康、法律、金融、天气、垂直小众等所有主流方向。</p>
       <p data-i18n="aboutWhatP2">支持 Fuse.js 模糊搜索（中英文 / 拼音 / 缩写 / 关键词容错）、分类筛选、URL 分享搜索结果。整个站点只有 6 个文件，0 第三方运行时依赖（仅 jsDelivr CDN 加载 Fuse.js），加载即用。</p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="aboutMethodologyTitle">评测方法论</h2>
+      <p data-i18n="aboutMethodologyP1">我们用统一的 4 维评分体系评估每个 AI 工具（每维 1-5 分）：</p>
+      <ul>
+        <li data-i18n="aboutMethodologyLi1">中文/英文写作质量：长文连贯性、用词地道程度、避免 AI 套话的能力</li>
+        <li data-i18n="aboutMethodologyLi2">实用功能密度：除核心功能外，是否有 SEO、模板、协作、批处理等附加价值</li>
+        <li data-i18n="aboutMethodologyLi3">价格合理性：按月/按字的真实成本，免费档是否够用</li>
+        <li data-i18n="aboutMethodologyLi4">隐私与数据安全：输入内容是否用于训练、能否关闭数据收集</li>
+      </ul>
+      <p data-i18n="aboutMethodologyP2">每款工具至少由 2 位编辑独立使用 20+ 小时后交叉评分，最终评分取平均。低分工具不会被收录到首页推荐位。</p>
+      <p>
+        <span data-i18n="aboutMethodologyP3">评测方法、评分标准、对比维度在我们的深度文章中公开，例如</span>
+        <a href="./blog/chatgpt-vs-claude-vs-gemini.html" class="cyan" data-i18n="aboutMethodologyP3Link">2026 年三大主流 AI 助手对比</a>
+        <span data-i18n="aboutMethodologyP3Suffix">就是基于这套方法论。</span>
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="aboutReviewTitle">内容审核流程</h2>
+      <p data-i18n="aboutReviewP1">所有收录的工具都经过 3 步审核：</p>
+      <ul>
+        <li data-i18n="aboutReviewLi1">初步筛选：基于官方主页、媒体报道、用户社区交叉验证，确认工具确实存在且功能可用</li>
+        <li data-i18n="aboutReviewLi2">编辑试用：至少 2 位编辑独立完成 3-5 个真实任务，记录使用体验、定价、限制</li>
+        <li data-i18n="aboutReviewLi3">同行对比：在同类工具中横向比较，确认值得收录到对应分类（避免收录明显劣于同类工具的）</li>
+      </ul>
+      <p data-i18n="aboutReviewP2">下架机制：工具停止维护、长期不可用、被原作者要求下架的，7 天内从目录移除。</p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="aboutArticlesTitle">深度文章</h2>
+      <p data-i18n="aboutArticlesP1">除了工具目录，我们还持续发布深度评测文章，帮你做出更合适的选择：</p>
+      <ul>
+        <li><a href="./blog/best-ai-writing-tools-2026.html" class="cyan" data-i18n="aboutArticlesA1">2026 年最值得关注的 10 个 AI 写作工具深度对比</a></li>
+        <li><a href="./blog/free-ai-tools-list.html" class="cyan" data-i18n="aboutArticlesA2">2026 年免费 AI 工具推荐清单（实测好用）</a></li>
+        <li><a href="./blog/chatgpt-vs-claude-vs-gemini.html" class="cyan" data-i18n="aboutArticlesA3">ChatGPT vs Claude vs Gemini 真实使用体验对比（2026）</a></li>
+      </ul>
     </section>
 
     <section class="card">
@@ -51,7 +96,7 @@
         <li><span data-i18n="aboutStackLi2Prefix">模糊搜索：</span><a href="https://fusejs.io" target="_blank" rel="noopener" class="cyan">Fuse.js 7.0</a><span data-i18n="aboutStackLi2Suffix">（CDN）</span></li>
         <li data-i18n="aboutStackLi3">部署：GitHub Pages（CDN + HTTPS + 自定义域名支持）</li>
         <li data-i18n="aboutStackLi4">分析：Google Analytics（G-SKES4GTDCS）</li>
-        <li data-i18n="aboutStackLi5">广告：Google AdSense（审核中）</li>
+        <li data-i18n="aboutStackLi5">广告：Google AdSense（ca-pub-6473783239192829）</li>
       </ul>
     </section>
 
@@ -65,13 +110,25 @@
       </p>
     </section>
 
+    <section class="card" id="contact">
+      <h2 data-i18n="aboutContactTitle">联系我们</h2>
+      <p data-i18n="aboutContactP1">如果你有工具收录建议、bug 报告、内容勘误或合作意向，欢迎通过以下方式联系：</p>
+      <ul>
+        <li data-i18n="aboutContactLi1">邮箱：aaron88915@users.noreply.github.com（24 小时内回复）</li>
+        <li data-i18n="aboutContactLi2">GitHub Issues：github.com/Aaron88915/AItools/issues（建议用于 bug 报告）</li>
+        <li data-i18n="aboutContactLi3">网站反馈：站内任何页面底部都有反馈入口</li>
+      </ul>
+    </section>
+
     <section class="card">
       <h2 data-i18n="aboutUpdatesTitle">更新记录</h2>
       <ul>
-        <li data-i18n="aboutUpdatesLi1">v8 · 2026-07-25 · 加 AdSense 占位 + Google Analytics + sitemap + robots</li>
-        <li data-i18n="aboutUpdatesLi2">v6 · 2026-07-25 · dedup 优化：跨分类同工具保留，删除 18 个纯冗余</li>
-        <li data-i18n="aboutUpdatesLi3">v4 · 2026-07-25 · 597 → 533 工具，分类导航改到右侧 sidebar，移动端顶部横排</li>
-        <li data-i18n="aboutUpdatesLi4">v3 · 2026-07-24 · 528 工具，28 分类上线</li>
+        <li data-i18n="aboutUpdatesLi1">v25 · 2026-08-18 · 加 3 篇深度评测文章 + 团队/方法论/审核流程介绍 + 文章导航</li>
+        <li data-i18n="aboutUpdatesLi2">v23 · 2026-07-26 · 加 ads.txt（AdSense 授权）</li>
+        <li data-i18n="aboutUpdatesLi3">v22 · 2026-07-26 · AdSense 验证脚本全站部署 + 激活 ca-pub-6473783239192829</li>
+        <li data-i18n="aboutUpdatesLi4">v21 · 2026-07-25 · Auto Ads + 手动 ad-slot 混用</li>
+        <li data-i18n="aboutUpdatesLi5">v17 · 2026-07-26 · 移动端分类改下拉菜单</li>
+        <li data-i18n="aboutUpdatesLi6">v13 · 2026-07-25 · i18n 中英双语切换</li>
       </ul>
     </section>
 

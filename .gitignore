@@ -16,6 +16,10 @@ preview*.png
 test-*.html
 fix-*.py
 check-*.py
+debug-*.html
+debug*.html
+frame-*.html
+preview-*.html
 
 # 部署包
 ai-nav-v*.zip

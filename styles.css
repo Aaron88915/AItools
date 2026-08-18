@@ -828,6 +828,63 @@ body[data-fast-scrolling] * {
 }
 .back-home a:hover { text-decoration: underline; }
 
+/* v25: 首页深度文章区 */
+.articles-block {
+  max-width: 1280px;
+  margin: 48px auto 0;
+  padding: 28px 28px 8px;
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.articles-title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-0);
+}
+.articles-desc {
+  margin: 0 0 18px;
+  color: var(--text-1);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.articles-list {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+}
+.articles-list li { margin: 0; padding: 0; }
+.articles-list .article-link {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-1);
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+.articles-list .article-link:hover {
+  background: var(--bg-3);
+  border-color: var(--c-cyan);
+}
+.articles-list .article-name {
+  color: var(--c-cyan);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.articles-list .article-meta {
+  color: var(--text-2);
+  font-size: 12px;
+}
+
 /* about 单列 header（带语言切换的简化版） */
 .about-header {
   grid-template-columns: 1fr auto;
