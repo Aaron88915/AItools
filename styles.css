@@ -885,6 +885,33 @@ body[data-fast-scrolling] * {
   font-size: 12px;
 }
 
+/* v26: 工具卡详情图标 (ⓘ) */
+.tool-card { position: relative; }
+.tool-card .card-info {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(91, 140, 255, 0.15);
+  color: var(--c-cyan);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s, background 0.15s, transform 0.15s;
+  user-select: none;
+}
+.tool-card .card-info:hover {
+  opacity: 1;
+  background: rgba(91, 140, 255, 0.35);
+  transform: scale(1.15);
+}
+
 /* about 单列 header（带语言切换的简化版） */
 .about-header {
   grid-template-columns: 1fr auto;

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bing Create · 图像生成 · AI Nav 工具导航</title>
+<meta name="description" content="Bing 文生图" />
+<meta name="keywords" content="Bing Create,图像生成,微软,免费" />
+<meta name="author" content="AI Nav 编辑团队" />
+<meta property="og:title" content="Bing Create · 图像生成" />
+<meta property="og:description" content="Bing 文生图" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://aitools-nav.xyz/tools/bing-create.html" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://aitools-nav.xyz/tools/bing-create.html" />
+<link rel="icon" type="image/svg+xml" href="../logo.svg?v=26">
+<style>
+:root { --bg:#0b0d12; --fg:#e8eaf0; --muted:#8a8fa3; --card:#141821; --border:#252a36; --accent:#5b8cff; --tag:#1a2030; --cyan:#5b8cff; --good:#4ade80; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--fg); line-height: 1.7; }
+.container { max-width: 860px; margin: 0 auto; padding: 24px 20px 60px; }
+.breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+.breadcrumb a { color: var(--cyan); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.tool-header { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; }
+.tool-name { margin: 0 0 6px; font-size: 30px; line-height: 1.2; }
+.tool-cat { color: var(--cyan); font-size: 14px; font-weight: 500; }
+.tool-cat a { color: var(--cyan); text-decoration: none; }
+.tag-row { margin-top: 10px; }
+.tag { display: inline-block; background: var(--tag); color: var(--muted); padding: 2px 10px; border-radius: 12px; font-size: 12px; margin-right: 6px; }
+.tool-score { display: flex; align-items: baseline; gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+.score-num { font-size: 36px; font-weight: 700; color: var(--good); }
+.score-stars { color: #fbbf24; font-size: 18px; letter-spacing: 2px; }
+.score-meta { color: var(--muted); font-size: 13px; }
+.cta-row { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.cta-btn { display: inline-block; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background 0.15s; }
+.cta-primary { background: var(--cyan); color: #fff; }
+.cta-primary:hover { background: #4a7bef; }
+.cta-secondary { background: transparent; color: var(--fg); border: 1px solid var(--border); }
+.cta-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
+h2 { font-size: 22px; margin: 32px 0 10px; padding-top: 8px; border-top: 1px solid var(--border); }
+h3 { font-size: 16px; margin: 20px 0 6px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+p { margin: 10px 0; }
+.intro { background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--cyan); padding: 16px 22px; border-radius: 0 6px 6px 0; margin: 20px 0; }
+ul { padding-left: 22px; }
+li { margin: 4px 0; }
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.dim-table { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 22px; }
+.dim-row { display: flex; align-items: center; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.dim-row:last-child { border-bottom: none; }
+.dim-label { flex: 1; color: var(--muted); font-size: 14px; }
+.dim-stars { color: #fbbf24; letter-spacing: 1px; font-size: 14px; min-width: 90px; }
+.dim-num { font-weight: 600; color: var(--fg); min-width: 32px; text-align: right; }
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pros-card, .cons-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 22px; }
+.pros-card h3, .cons-card h3 { margin-top: 0; }
+.pros-card h3 { color: var(--good); }
+.cons-card h3 { color: #f87171; }
+.pros-card ul, .cons-card ul { padding-left: 20px; }
+.related-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+.related-list li { margin: 0; padding: 0; }
+.related-list a { display: block; padding: 8px 12px; background: var(--card); border: 1px solid var(--border); border-radius: 6px; text-decoration: none; color: var(--fg); font-size: 13px; transition: border-color 0.15s; }
+.related-list a:hover { border-color: var(--cyan); color: var(--cyan); }
+footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
+footer a { color: var(--cyan); }
+@media (max-width: 640px) {
+  .pros-cons { grid-template-columns: 1fr; }
+  .tool-name { font-size: 24px; }
+  .score-num { font-size: 28px; }
+  .related-list { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="breadcrumb">
+  <a href="../">AI Nav 首页</a> · <a href="../?cat=image">图像生成</a> · <span>Bing Create</span>
+</div>
+
+<div class="tool-header">
+  <h1 class="tool-name">Bing Create</h1>
+  <div class="tool-cat">📁 <a href="../?cat=image">图像生成</a></div>
+  <div class="tag-row"><span class="tag">微软</span><span class="tag">免费</span></div>
+  <div class="tool-score">
+    <span class="score-num">4.3</span>
+    <div>
+      <div class="score-stars">★★★★☆</div>
+      <div class="score-meta">综合评分（基于功能/体验/价格/隐私 4 维）</div>
+    </div>
+  </div>
+  <div class="cta-row">
+    <a href="https://www.bing.com/images/create" target="_blank" rel="noopener noreferrer" class="cta-btn cta-primary">访问官网 →</a>
+    <a href="../?cat=image" class="cta-btn cta-secondary">查看同分类其他工具</a>
+  </div>
+</div>
+
+<div class="intro">
+  <p>Bing Create 是一个图像生成类 AI 工具。Bing 文生图</p>
+</div>
+
+<h2>详细介绍</h2>
+<p>Bing Create 定位于 图像生成 场景，Bing 文生图。</p>
+<p>在实际使用中，Bing Create 的核心价值在于把原本需要专业知识或重复劳动的工作变得人人可及。无论是个人用户的轻量级需求，还是企业级场景下的批量处理，Bing Create 都能提供相对稳定的输出质量。</p>
+<p>从我们的评测经验看，Bing Create 最适合 社交媒体配图与海报 的用户；对于 产品概念图与电商主图，建议先试用免费档确认是否符合预期再决定是否付费。</p>
+
+<h2>核心功能</h2>
+<ul><li>文生图、图生图、图生图变体</li><li>多种艺术风格（写实/插画/水墨/3D）</li><li>高分辨率输出与细节优化</li><li>局部重绘与扩图能力</li></ul>
+
+<h2>适用场景</h2>
+<ul><li>社交媒体配图与海报</li><li>产品概念图与电商主图</li><li>游戏/动画角色与场景</li><li>品牌素材与营销视觉</li></ul>
+
+<h2>4 维评分</h2>
+<div class="dim-table">
+    <div class="dim-row"><span class="dim-label">功能完整度</span><span class="dim-stars">★★★★★</span><span class="dim-num">5.0</span></div>
+    <div class="dim-row"><span class="dim-label">使用体验</span><span class="dim-stars">★★★★★</span><span class="dim-num">5.0</span></div>
+    <div class="dim-row"><span class="dim-label">价格合理</span><span class="dim-stars">★★★★☆</span><span class="dim-num">4.0</span></div>
+    <div class="dim-row"><span class="dim-label">隐私安全</span><span class="dim-stars">★★★☆☆</span><span class="dim-num">3.0</span></div>
+  </div>
+
+<h2>优缺点分析</h2>
+<div class="pros-cons">
+  <div class="pros-card">
+    <h3>✓ 主要优势</h3>
+    <ul><li>创意实现门槛大幅降低</li><li>多种模型可选适应不同风格</li></ul>
+  </div>
+  <div class="cons-card">
+    <h3>△ 可能不足</h3>
+    <ul><li>版权归属与商用授权需看清</li><li>人像细节仍可能&quot;翻车&quot;</li></ul>
+  </div>
+</div>
+
+<h2>同类替代品</h2>
+<p>如果你对 Bing Create 的某些方面不满意，可以试试这些同类工具：</p>
+<ul><li><a href="./Z-Image20E7BABFE4B88A.html" class="cyan">Z-Image 线上</a> — 阿里 Z-Image 官方在线体验</li><li><a href="./vega-ai.html" class="cyan">Vega AI</a> — 国产 AI 绘画 + 在线训练</li><li><a href="./E6B5B7E889BA20AI.html" class="cyan">海艺 AI</a> — 国产 AI 绘画，12000+ 风格</li><li><a href="./36020E9B8BFE59BBE.html" class="cyan">360 鸿图</a> — 360 AI 绘画，多风格支持</li><li><a href="./E7A8BFE5AE9A20AI.html" class="cyan">稿定 AI</a> — 稿定 AI 绘画 + 商品图</li></ul>
+
+<h2>同分类其他工具</h2>
+<p>图像生成 分类下还有这些工具值得关注：</p>
+<ul class="related-list"><li><a href="./36020E9B8BFE59BBE.html" class="cyan">360 鸿图</a></li><li><a href="./E7A8BFE5AE9A20AI.html" class="cyan">稿定 AI</a></li><li><a href="./E6B5B7E889BA20AI.html" class="cyan">海艺 AI</a></li><li><a href="./E58DB3E6A2A620AI.html" class="cyan">即梦 AI</a></li><li><a href="./E58DB3E697B6E8AEBEE8AEA1.html" class="cyan">即时设计</a></li><li><a href="./E58FAFE59BBE20(Kling20Image).html" class="cyan">可图 (Kling Image)</a></li><li><a href="./E9809AE4B989E4B887E79BB8.html" class="cyan">通义万相</a></li><li><a href="./E69687E5BF83E4B880E6A0BC.html" class="cyan">文心一格</a></li><li><a href="./adobe-firefly.html" class="cyan">Adobe Firefly</a></li><li><a href="./bing-image-creator.html" class="cyan">Bing Image Creator</a></li></ul>
+
+<footer>
+<p>本页由 AI Nav 编辑团队基于 Bing Create 的公开资料和团队评测经验整理。如果发现信息已过时或你有不同体验，欢迎 <a href="../about.html#contact">联系我们</a> 反馈。</p>
+<p>© 2026 AI Nav · <a href="../">首页</a> · <a href="../about.html">关于我们</a> · <a href="../privacy.html">隐私政策</a></p>
+</footer>
+</div>
+</body>
+</html>

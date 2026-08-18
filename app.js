@@ -5,6 +5,7 @@
  * - 分类筛选 + / 快捷键
  * - i18n：分类名按当前语言渲染，desc 走 descEn，监听 langchange 重渲染
  * - v24: renderSections() 保留非 .cat-section 静态元素（编辑精选 intro 不被覆盖）
+ * - v26: 卡片右下加 "ⓘ" 详情图标，跳 /tools/<slug>.html（不破坏主点击行为）
  * ============================================================ */
 (function () {
   "use strict";
@@ -156,11 +157,24 @@
     // 根据当前语言选 desc（en 时优先用 descEn，回落到 desc）
     const desc = I18N.getLang() === "en" ? (t.descEn || t.desc || "") : (t.desc || "");
     a.title = `${t.name} · ${desc}`;
+    // v26: 详情 slug（与 generate-tools.js 保持一致）
+    const slug = toolSlug(t.name);
     a.innerHTML = `
       <div class="tool-name">${escapeHTML(t.name)}</div>
       <div class="tool-desc">${escapeHTML(desc)}</div>
+      <span class="card-info" data-detail-slug="${escapeHTML(slug)}" title="查看 ${escapeHTML(t.name)} 详细介绍" aria-label="查看详情">ⓘ</span>
     `;
     return a;
+  }
+
+  // v26: 与 generate-tools.js 同步的 slug 计算
+  function toolSlug(name) {
+    if (!name) return "tool";
+    if (/^[\x00-\x7F]+$/.test(name)) {
+      return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").substring(0, 80) || "tool";
+    }
+    const hex = encodeURIComponent(name).replace(/%/g, "");
+    return hex.substring(0, 40) || "tool";
   }
 
   function escapeHTML(s) {
@@ -327,6 +341,16 @@
     btn.addEventListener("click", () => {
       I18N.setLang(btn.dataset.lang);
     });
+  });
+
+  // v26: 卡片 ⓘ 详情图标 — 跳到 /tools/<slug>.html，阻止冒泡避免跳官网
+  document.addEventListener("click", (e) => {
+    const info = e.target.closest && e.target.closest(".card-info");
+    if (!info) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const slug = info.dataset.detailSlug;
+    if (slug) window.location.href = "./tools/" + slug + ".html";
   });
 
   // 首次渲染
